@@ -1,5 +1,8 @@
 # healthz
 
+[![GoDoc](https://godoc.org/github.com/jasonhancock/healthz?status.svg)](https://godoc.org/github.com/jasonhancock/healthz)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jasonhancock/healthz)](https://goreportcard.com/report/github.com/jasonhancock/healthz)
+
 Inspired by Kelsey Hightower's [talk at Monitorama](https://vimeo.com/173610242), the code accompanying the talk (https://github.com/kelseyhightower/app-healthz/) and the healthz implementation in Kubernetes(https://github.com/kubernetes/kubernetes/tree/master/pkg/healthz).
 
 # Issuing requests
