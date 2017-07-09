@@ -1,7 +1,9 @@
-package hzchecks
+package healthz
 
 import (
 	"context"
+	"net/http"
+	"runtime"
 	"testing"
 
 	"github.com/cheekybits/is"
@@ -24,4 +26,11 @@ func TestStaticMD(t *testing.T) {
 	is.Equal("value1", value1)
 }
 
-// TODO: include an example
+func ExampleStaticMD() {
+	checker := NewChecker()
+	checker.AddCheck("app", NewStaticMD(map[string]string{
+		"go_version": runtime.Version(),
+		"go_arch":    runtime.GOARCH,
+	}))
+	http.ListenAndServe(":8080", checker)
+}

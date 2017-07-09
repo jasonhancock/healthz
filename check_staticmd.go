@@ -1,9 +1,7 @@
-package hzchecks
+package healthz
 
 import (
 	"context"
-
-	"github.com/jasonhancock/healthz"
 )
 
 // StaticMD is a static metadata healthz check
@@ -20,8 +18,8 @@ func NewStaticMD(md map[string]string) StaticMD {
 }
 
 // Check is called by the checker and returns the metadata
-func (c StaticMD) Check(ctx context.Context) *healthz.Response {
-	return &healthz.Response{
+func (c StaticMD) Check(ctx context.Context) *Response {
+	return &Response{
 		Metadata: c.md,
 	}
 }
