@@ -8,10 +8,10 @@ import (
 
 func Example() {
 	checker := NewChecker()
-	checker.AddCheck("app", NewStaticMD(map[string]string{
+	checker.AddCheck("app", NewCheckStaticMD(map[string]string{
 		"key1": "value1",
 	}))
-	checker.AddCheck("app2", NewStaticMD(map[string]string{
+	checker.AddCheck("app2", NewCheckStaticMD(map[string]string{
 		"key2": "a different value",
 	}))
 
@@ -20,10 +20,10 @@ func Example() {
 
 func Example_gorilla() {
 	checker := NewChecker()
-	checker.AddCheck("app", NewStaticMD(map[string]string{
+	checker.AddCheck("app", NewCheckStaticMD(map[string]string{
 		"key1": "value1",
 	}))
-	checker.AddCheck("app2", NewStaticMD(map[string]string{
+	checker.AddCheck("app2", NewCheckStaticMD(map[string]string{
 		"key2": "a different value",
 	}))
 
