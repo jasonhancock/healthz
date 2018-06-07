@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// CheckCTP is a TCP health check
+// CheckTCP is a TCP health check
 type CheckTCP struct {
 	addr    string
 	timeout time.Duration
