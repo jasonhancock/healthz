@@ -1,10 +1,6 @@
 package healthz
 
-import (
-	"net/http"
-
-	"github.com/gorilla/mux"
-)
+import "net/http"
 
 func Example() {
 	checker := NewChecker()
@@ -27,8 +23,7 @@ func Example_gorilla() {
 		"key2": "a different value",
 	}))
 
-	r := mux.NewRouter()
-	r.PathPrefix("/healthz").Handler(checker)
+	http.Handle("/healthz", checker)
 
-	http.ListenAndServe(":8080", r)
+	http.ListenAndServe(":8080", nil)
 }

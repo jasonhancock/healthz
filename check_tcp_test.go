@@ -8,26 +8,24 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cheekybits/is"
+	"github.com/stretchr/testify/require"
 )
 
 func TestCheckTCP(t *testing.T) {
-	is := is.New(t)
-
 	server := httptest.NewServer(nil)
 	defer server.Close()
 
 	u, err := url.Parse(server.URL)
-	is.NoErr(err)
+	require.NoError(t, err)
 
 	c := NewCheckTCP(u.Host, 5*time.Second)
 	result := c.Check(context.Background())
-	is.NoErr(result.Error)
+	require.NoError(t, result.Error)
 
 	// Shut the server down, expect an error
 	server.Close()
 	result = c.Check(context.Background())
-	is.Err(result.Error)
+	require.Error(t, result.Error)
 }
 
 func ExampleCheckTCP() {
