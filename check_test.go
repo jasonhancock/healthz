@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/cheekybits/is"
+	"github.com/stretchr/testify/require"
 )
 
 var count int
@@ -22,18 +22,16 @@ func (c testCheck) Check(ctx context.Context) *Response {
 }
 
 func TestCheck(t *testing.T) {
-	is := is.New(t)
-
 	count = 0
 
 	c := testCheck{}
 	ctx := context.Background()
 
 	r := c.Check(ctx)
-	is.Equal(count, 1)
-	is.Equal(r.Metadata["count"], "1")
+	require.Equal(t, 1, count)
+	require.Equal(t, "1", r.Metadata["count"])
 
 	r = c.Check(ctx)
-	is.Equal(count, 2)
-	is.Equal(r.Metadata["count"], "2")
+	require.Equal(t, 2, count)
+	require.Equal(t, "2", r.Metadata["count"])
 }

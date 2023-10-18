@@ -6,12 +6,10 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/cheekybits/is"
+	"github.com/stretchr/testify/require"
 )
 
 func TestCheckStaticMD(t *testing.T) {
-	is := is.New(t)
-
 	md := map[string]string{
 		"key1": "value1",
 		"key2": "value2",
@@ -20,10 +18,10 @@ func TestCheckStaticMD(t *testing.T) {
 	c := NewCheckStaticMD(md)
 	result := c.Check(context.Background())
 
-	is.Equal(2, len(result.Metadata))
+	require.Len(t, result.Metadata, 2)
 	value1, ok := result.Metadata["key1"]
-	is.OK(ok)
-	is.Equal("value1", value1)
+	require.True(t, ok)
+	require.Equal(t, "value1", value1)
 }
 
 func ExampleCheckStaticMD() {

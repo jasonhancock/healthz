@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/cheekybits/is"
+	"github.com/stretchr/testify/require"
 )
 
 func TestCheckDNS(t *testing.T) {
@@ -24,13 +24,12 @@ func TestCheckDNS(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%s-%s", tt.address, tt.network), func(t *testing.T) {
-			is := is.New(t)
 			c := NewCheckDNS(tt.network, tt.address)
 			result := c.Check(context.Background())
 			if tt.expectError {
-				is.Err(result.Error)
+				require.Error(t, result.Error)
 			} else {
-				is.NoErr(result.Error)
+				require.NoError(t, result.Error)
 			}
 		})
 	}
